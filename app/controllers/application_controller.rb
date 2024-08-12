@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    unless current_user&.admin?
+    unless current_user&.role == 1
       redirect_to root_path, alert: "Access denied!"
     end
   end

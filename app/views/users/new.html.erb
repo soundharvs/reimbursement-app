@@ -1,6 +1,15 @@
 <div class="container">
   <h2 class="mt-5">Add New User</h2>
   <%= form_with model: @user, local: true do |form| %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="form-group">
       <%= form.label :name %>
       <%= form.text_field :name, class: "form-control" %>

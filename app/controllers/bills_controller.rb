@@ -3,7 +3,7 @@ class BillsController < ApplicationController
   before_action :require_admin, only: [:update_status, :admin_index]
 
   def index
-    if current_user.admin?
+    if current_user.role == 1
       redirect_to admin_index_bills_path
     else
       @bills = current_user.bills
@@ -41,22 +41,6 @@ class BillsController < ApplicationController
       redirect_to admin_index_bills_path, alert: "Failed to update bill status."
     end
   end  
-
-  # def approve
-  #   if @bill.update(status: "approved")
-  #     redirect_to admin_index_bills_path, notice: "Bill approved."
-  #   else
-  #     redirect_to admin_index_bills_path, alert: "Failed to approve bill."
-  #   end
-  # end
-
-  # def reject
-  #   if @bill.update(status: "rejected")
-  #     redirect_to admin_index_bills_path, notice: "Bill rejected."
-  #   else
-  #     redirect_to admin_index_bills_path, alert: "Failed to reject bill."
-  #   end
-  # end
 
   private
 
