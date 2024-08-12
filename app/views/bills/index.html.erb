@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="mt-5">My Submitted Bills</h2>
+  <br>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <strong>Total Submiitted:</strong> <%= number_to_currency(@total_amount) %>
+    </div>
+    <div class="col-md-6 text-right">
+      <strong>Total Approved:</strong> <%= number_to_currency(@total_approved) %>
+    </div>
+  </div>
+    <br>
+  <table class="table table-striped">
+    <thead style="background-color: #f8f9fa;">
+      <tr>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Date of Submission</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bills.each do |bill| %>
+        <tr>
+          <td><%= bill.bill_type.titleize %></td>
+          <td><%= bill.amount %></td>
+          <td><%= bill.created_at.to_formatted_s(:short) %></td>
+          <td><%= bill.status.to_s.titleize %></td>       
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

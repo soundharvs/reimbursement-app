@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 class="mt-5">All Employees</h2>
+  <%= link_to 'Add New User', new_user_path, class: "btn btn-primary mb-3" %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.designation %></td>
+          <td><%= user.department %></td>
+          <td>
+            <%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning btn-sm" %>
+            <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

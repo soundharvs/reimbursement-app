@@ -1,0 +1,25 @@
+<div class="container">
+  <%= form_with model: @user, local: true do |form| %>
+    <div class="form-group">
+      <%= form.label :name, "Full Name" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :designation %>
+      <%= form.text_field :designation, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :role %>
+      <%= form.select :role, User.roles.keys.map { |role| [role.titleize, role] }, {}, class: "form-control" %>
+    </div>
+    <%= form.submit class: "btn btn-primary mt-3" %>
+  <% end %>
+</div>

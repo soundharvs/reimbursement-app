@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reimbursement Portal</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha384-Q5i6GfG6TEXd6gXPUR4DRA3Bw7E7Y8AkEn+VR5C+9KXkX0k1kZJh5FYDshxTgrk9F" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <body data-flash-notice="<%= flash[:notice] %>" data-flash-alert="<%= flash[:alert] %>">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Reimbursement Portal</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if logged_in? %>
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to 'Employees', users_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'All Bills', admin_index_bills_path, class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'My Bills', bills_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Submit Bill', new_bill_path, class: "nav-link" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to 'Log Out', logout_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <%= yield %>
+  </div>
+</body>
+</html>

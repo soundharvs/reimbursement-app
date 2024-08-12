@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 class="mt-5">All Submitted Bills</h2>
+  <br>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <strong>Total Approved:</strong> <%= number_to_currency(@total_approved) %>
+    </div>
+    <div class="col-md-6 text-right">
+      <strong>Total Amount:</strong> <%= number_to_currency(@total_amount) %>
+    </div>
+  </div>
+    <br>
+  <table class="table table-bordered">
+    <thead >
+      <tr>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Date of Submission</th>
+        <th>Submitted By</th>
+        <th>Department</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bills.each do |bill| %>
+        <tr>
+          <td><%= bill.bill_type.titleize %></td>
+          <td><%= number_to_currency(bill.amount) %></td>
+          <td><%= bill.created_at.to_formatted_s(:short) %></td>
+          <td><%= bill.user.name %></td>
+          <td><%= bill.user.department %></td>
+          <td><%= bill.status.to_s.titleize %></td>
+          <td>
+            <%= form_with url: update_status_bill_path(bill), method: :patch, local: true do |form| %>
+              <%= form.select :status, Bill.statuses.keys.map { |status| [status.titleize, status] }, { include_blank: 'Select Status' }, class: "form-control" %>
+              <%= form.submit 'Update Status', class: "btn btn-primary btn-sm mt-2" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

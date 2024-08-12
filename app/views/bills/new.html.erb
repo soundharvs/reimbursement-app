@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 class="mt-5">Submit Reimbursement Bill</h2>
+  <%= form_with model: @bill, local: true do |form| %>
+    <div class="form-group">
+      <%= form.label :amount %>
+      <%= form.number_field :amount, step: :any, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :bill_type, "Type" %>
+      <%= form.select :bill_type, Bill.bill_types.keys.map { |type| [type.titleize, type] }, {}, class: "form-control" %>
+    </div>
+    <%= form.submit "Submit", class: "btn btn-primary mt-3" %>
+  <% end %>
+</div>
