@@ -14,7 +14,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-gem "bootstrap", "~> 5.2.0"
+gem "bootstrap", "~> 5.3.3"
 gem "sassc-rails"
 gem 'jquery-rails'
 gem 'coffee-rails'
